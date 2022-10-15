@@ -9,3 +9,6 @@
 ## Techstacks Frontend
 - Kotlin
 - Jetpack Compose
+- Retrofit2
+- SharedPreference
+- Google Map
