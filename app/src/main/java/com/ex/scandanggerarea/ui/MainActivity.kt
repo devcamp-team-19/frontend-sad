@@ -9,9 +9,11 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.ex.scandanggerarea.data.local.SharedPref
 import com.ex.scandanggerarea.ui.createfeed.CreateFeedPage
 import com.ex.scandanggerarea.ui.detail.DetailFeedPage
@@ -60,8 +62,11 @@ fun SadApp() {
         composable(AppScreen.Home.name) {
             HomePage(navController)
         }
-        composable(AppScreen.DetailPost.name) {
-            DetailFeedPage(navController)
+        composable(
+            AppScreen.DetailPost.name.plus("/{test}"),
+            arguments = listOf(navArgument("test") { type = NavType.StringType })
+        ) {
+            DetailFeedPage(navController, it.arguments?.getString("test"))
         }
         composable(AppScreen.CreateFeed.name) {
             CreateFeedPage(navController)

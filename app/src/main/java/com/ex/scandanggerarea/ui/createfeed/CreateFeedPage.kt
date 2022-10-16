@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -26,13 +25,15 @@ fun CreateFeedPage(navHostController: NavHostController) {
             }
         })
     }) {
-        DetailBody()
+        DetailBody {
+            navHostController.popBackStack()
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun DetailBody() {
+fun DetailBody(click: () -> Unit = {}) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -71,13 +72,6 @@ fun DetailBody() {
                 value = "",
                 onValueChange = { },
                 label = { Text("Description") },
-                modifier = Modifier.fillMaxWidth()
-            )
-            OutlinedTextField(
-                singleLine = true,
-                value = "",
-                onValueChange = { },
-                label = { Text("Location") },
                 modifier = Modifier.fillMaxWidth()
             )
 

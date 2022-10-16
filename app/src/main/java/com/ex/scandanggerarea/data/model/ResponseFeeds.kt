@@ -29,7 +29,7 @@ data class ResponseFeeds(
         @SerializedName("longitude")
         val longitude: String,
         @SerializedName("radius")
-        val radius: Int,
+        val radius: Double,
         @SerializedName("UpdatedAt")
         val updatedAt: String,
         @SerializedName("UserID")

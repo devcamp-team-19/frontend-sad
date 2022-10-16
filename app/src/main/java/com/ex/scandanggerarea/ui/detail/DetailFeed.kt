@@ -1,5 +1,6 @@
 package com.ex.scandanggerarea.ui.detail
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -21,12 +22,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.ex.scandanggerarea.R
 import com.ex.scandanggerarea.ui.feed.Dislike
 import com.ex.scandanggerarea.ui.feed.Like
 
 @Composable
-fun DetailFeedPage(navController: NavHostController) {
+fun DetailFeedPage(navController: NavHostController, string: String?) {
+    Log.e("Test", string.toString())
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "Detail Incident") }, navigationIcon = {
             IconButton(onClick = {
@@ -51,7 +54,7 @@ fun DetailBody() {
     ) {
         item {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+                painter = rememberAsyncImagePainter("https://cloud.jpnn.com/photo/arsip/watermark/2021/03/02/seorang-tukang-parkir-dikeroyok-geng-motor-di-bat-kota-cireb-24.jpg"),
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -73,13 +76,13 @@ fun DetailBody() {
                 Spacer(Modifier.width(8.dp))
                 Text(text = "Kejahatan")
                 Spacer(modifier = Modifier.weight(1f))
-                Like("1000")
+                Like("100")
                 Spacer(modifier = Modifier.width(8.dp))
-                Dislike("1000")
+                Dislike("17")
             }
 
             Text(
-                text = "Tawuran Gengster",
+                text = "Gengster Pelajar",
                 Modifier
                     .background(shape = RectangleShape, color = Color.White)
                     .fillMaxWidth()
@@ -88,7 +91,7 @@ fun DetailBody() {
                 fontSize = 20.sp
             )
             Text(
-                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
+                text = "Telah terjadi kerusuhan di kota dengan gangster puruan yang mericuhkan warga dan membuat panik sekitarnya",
                 Modifier
                     .background(shape = RectangleShape, color = Color.White)
                     .fillMaxWidth()
@@ -109,21 +112,18 @@ fun DetailBody() {
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Wah iya kemarin aku lewat situ rame banget, banyak yang korbannya",
+                text = "Wah iya kemarin aku lewat situ rame banget, banyak korbannya",
                 modifier = Modifier.padding(
                     start = 16.dp,
                     end = 16.dp,
                 )
             )
             Text(
-                text = "Reply",
-                color = Color.Gray,
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    end = 16.dp,
-                    top = 8.dp
-                ).fillMaxWidth(),
-                textAlign = TextAlign.End
+                text = "Reply", color = Color.Gray, modifier = Modifier
+                    .padding(
+                        start = 16.dp, end = 16.dp, top = 8.dp
+                    )
+                    .fillMaxWidth(), textAlign = TextAlign.End
             )
         }
     }

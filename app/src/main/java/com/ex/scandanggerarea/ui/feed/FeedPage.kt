@@ -43,7 +43,7 @@ fun FeedPage(navController: NavHostController) {
         }
     }) {
         FeedContent {
-            navController.navigate(AppScreen.DetailPost.name)
+            navController.navigate(AppScreen.DetailPost.name.plus("/{Ghozi}"))
         }
     }
 }
@@ -125,18 +125,28 @@ fun CardItem(data: ResponseFeeds.Data? = null, onClick: () -> Unit = {}) {
                     .padding(8.dp)
                     .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
+                val colorZone = listOf(
+                    Color.Red, Color.Blue, Color.Green, Color.Yellow
+                )
+
+                val typeZone = listOf(
+                    "Kejahatan", "Bencana Alam", "Kecelakaan", "Other"
+                )
+
                 Spacer(
                     modifier = Modifier
-                        .background(shape = CircleShape, color = Color.Red)
+                        .background(
+                            shape = CircleShape, color = colorZone[data?.category ?: 0]
+                        )
                         .height(20.dp)
                         .width(20.dp)
                 )
                 Spacer(Modifier.width(8.dp))
-                Text(text = "Kejahatan")
+                Text(text = typeZone[data?.category ?: 0])
                 Spacer(modifier = Modifier.weight(1f))
-                Like("1000")
+                Like("100")
                 Spacer(modifier = Modifier.width(8.dp))
-                Dislike("1000")
+                Dislike("17")
             }
         }
     }
@@ -145,11 +155,13 @@ fun CardItem(data: ResponseFeeds.Data? = null, onClick: () -> Unit = {}) {
 @Composable
 fun Dislike(count: String) {
     Icon(imageVector = Icons.Rounded.ThumbDown, contentDescription = "")
+    Spacer(modifier = Modifier.width(4.dp))
     Text(text = count)
 }
 
 @Composable
 fun Like(count: String) {
     Icon(imageVector = Icons.Rounded.ThumbUp, contentDescription = "")
+    Spacer(modifier = Modifier.width(4.dp))
     Text(text = count)
 }
